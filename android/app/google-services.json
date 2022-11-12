@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1000926527239",
+    "project_id": "mynotes69",
+    "storage_bucket": "mynotes69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000926527239:android:95739fcf3608528dc30fa2",
+        "android_client_info": {
+          "package_name": "in.berrydays.strawberrydaydreams"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000926527239-0jqgg49b5v0nqhv6efpi8tgqhuftoc9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRn0LQNP-nsDN5f_gSNcBAsHYfXDmuqDc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000926527239-0jqgg49b5v0nqhv6efpi8tgqhuftoc9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
