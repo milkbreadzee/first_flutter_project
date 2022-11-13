@@ -4,8 +4,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:strawberrydaydreams/constants/routes.dart';
+import 'package:strawberrydaydreams/views/util/show_err_dialog.dart';
 
 import '../firebase_options.dart';
+import 'dart:developer' as devtools show log;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -83,16 +86,36 @@ class _LoginViewState extends State<LoginView> {
                       try {
                         final userCredential = await FirebaseAuth.instance
                             .signInWithEmailAndPassword(
-                                email: email, password: password);
-                        print(userCredential);
+                          email: email,
+                          password: password,
+                        );
+                        devtools.log(userCredential.toString());
+                        final user = FirebaseAuth.instance.currentUser;
+                        if (user?.emailVerified ?? false) {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            notesRoute,
+                            (route) => false,
+                          );
+                        } else {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            verifyemailRoute,
+                            (route) => false,
+                          );
+                          
+                        }
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
-                          print("user not found.");
+                          await showErrDialog(context, "User not found");
                         } else if (e.code == 'wrong-password') {
-                          print("wrong password.");
+                          await showErrDialog(context, "Wrong Password");
                         } else if (e.code == 'email-already-in-use') {
-                          print("registered user, email in use.");
+                          await showErrDialog(context, "email already in use");
                         } //!!! add one for inavlid email too.
+                        else {
+                          await showErrDialog(context, "Error: ${e.code}");
+                        }
+                      } catch (e) {
+                        await showErrDialog(context, e.toString());
                       }
                     },
                     child: const Text('Login'),
@@ -100,7 +123,7 @@ class _LoginViewState extends State<LoginView> {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/register/', (route) => false);
+                          registerRoute, (route) => false);
                     },
                     child: const Text("register here <3"),
                   )

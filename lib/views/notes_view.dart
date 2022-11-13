@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:strawberrydaydreams/constants/routes.dart';
 import 'package:strawberrydaydreams/main.dart';
 import 'dart:developer' as devtools show log;
 
@@ -26,7 +27,7 @@ class NotesView extends StatelessWidget {
                 if (shouldLogout) {
                   await FirebaseAuth.instance.signOut();
                   Navigator.of(context)
-                      .pushNamedAndRemoveUntil('/login/', (_) => false); //why dont you need route here???
+                      .pushNamedAndRemoveUntil(loginRoute, (_) => false); //why dont you need route here???
                 }
                 break;
             }

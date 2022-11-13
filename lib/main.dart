@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:strawberrydaydreams/constants/routes.dart';
 //import 'package:strawberrydaydreams/views/home_view.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:strawberrydaydreams/views/login_view.dart';
@@ -22,8 +23,10 @@ void main() {
       ),
       home: const HomePage(),
       routes: {
-        '/login/': (context) => const LoginView(),
-        '/register/': (context) => const RegisterView(),
+        loginRoute: (context) => const LoginView(),
+        registerRoute: (context) => const RegisterView(),
+        notesRoute:(context) => const NotesView(),
+        verifyemailRoute:(context) => const VerifyEmailView(),
       },
     ),
   );
