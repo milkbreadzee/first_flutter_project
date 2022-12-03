@@ -1,8 +1,8 @@
 //import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:strawberrydaydreams/constants/routes.dart';
+import 'package:strawberrydaydreams/services/auth/auth_service.dart';
 //import 'package:strawberrydaydreams/views/home_view.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:strawberrydaydreams/views/login_view.dart';
@@ -25,8 +25,8 @@ void main() {
       routes: {
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
-        notesRoute:(context) => const NotesView(),
-        verifyemailRoute:(context) => const VerifyEmailView(),
+        notesRoute: (context) => const NotesView(),
+        verifyemailRoute: (context) => const VerifyEmailView(),
       },
     ),
   );
@@ -42,15 +42,13 @@ class HomePage extends StatelessWidget {
     return FutureBuilder(
       //we told futurebuilder to perform a future which is
       //firebase initialization.
-      future: Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      ),
+      future: AuthService.firebase().initialize(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            final user = FirebaseAuth.instance.currentUser;
+            final user = AuthService.firebase().currentUser;
             if (user != null) {
-              if (user.emailVerified) {
+              if (user.isEmailVerified) {
                 return const NotesView();
               } else {
                 return const Center(child: VerifyEmailView());
@@ -84,5 +82,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-

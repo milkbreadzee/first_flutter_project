@@ -6,7 +6,9 @@ import 'package:strawberrydaydreams/constants/routes.dart';
 import 'package:strawberrydaydreams/main.dart';
 import 'dart:developer' as devtools show log;
 
-enum MenuAction { logout }
+import '../enums/menu_action.dart';
+
+
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});

@@ -1,10 +1,12 @@
 // This widget is the root
 //typw stl to get the  auto complete
 //loginview used to be homeview. created a new folder for it in views
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:strawberrydaydreams/constants/routes.dart';
+import 'package:strawberrydaydreams/services/auth/auth_exceptions.dart';
+import 'package:strawberrydaydreams/services/auth/auth_service.dart';
 import 'package:strawberrydaydreams/views/util/show_err_dialog.dart';
 
 import '../firebase_options.dart';
@@ -53,9 +55,7 @@ class _LoginViewState extends State<LoginView> {
       body: FutureBuilder(
         //we told futurebuilder to perform a future which is
         //firebase initialization.
-        future: Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        ),
+        future: AuthService.firebase().initialize(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
@@ -84,14 +84,13 @@ class _LoginViewState extends State<LoginView> {
                       final email = _email.text;
                       final password = _password.text;
                       try {
-                        final userCredential = await FirebaseAuth.instance
-                            .signInWithEmailAndPassword(
+                        await AuthService.firebase().logIn(
                           email: email,
                           password: password,
                         );
-                        devtools.log(userCredential.toString());
-                        final user = FirebaseAuth.instance.currentUser;
-                        if (user?.emailVerified ?? false) {
+
+                        final user = AuthService.firebase().currentUser;
+                        if (user?.isEmailVerified ?? false) {
                           Navigator.of(context).pushNamedAndRemoveUntil(
                             notesRoute,
                             (route) => false,
@@ -101,21 +100,28 @@ class _LoginViewState extends State<LoginView> {
                             verifyemailRoute,
                             (route) => false,
                           );
-                          
                         }
-                      } on FirebaseAuthException catch (e) {
-                        if (e.code == 'user-not-found') {
-                          await showErrDialog(context, "User not found");
-                        } else if (e.code == 'wrong-password') {
-                          await showErrDialog(context, "Wrong Password");
-                        } else if (e.code == 'email-already-in-use') {
-                          await showErrDialog(context, "email already in use");
-                        } //!!! add one for inavlid email too.
-                        else {
-                          await showErrDialog(context, "Error: ${e.code}");
-                        }
-                      } catch (e) {
-                        await showErrDialog(context, e.toString());
+                      } on UserNotFoundAuthException catch (e) {
+                        await showErrDialog(
+                          context,
+                          'User not found',
+                        );
+                      } on WrongPasswordAuthException {
+                        await showErrDialog(
+                          context,
+                          'Wrong Password',
+                        );
+                      
+                      } on InvalidEmailAuthException {
+                        await showErrDialog(
+                          context,
+                          'Invalid Email',
+                        );
+                      } on GenericAuthException {
+                        await showErrDialog(
+                          context,
+                          'Error',
+                        );
                       }
                     },
                     child: const Text('Login'),
