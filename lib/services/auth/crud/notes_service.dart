@@ -1,6 +1,7 @@
 // for sqlite database;
 
-import 'package:flutter/foundation.dart'; 
+import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'crud_exceptions.dart';
@@ -9,14 +10,37 @@ import 'package:sqflite/sqflite.dart';
 class NoteService {
   Database? _db;
 
+  List<DataBaseNotes> _notes = [];
+
+  final _notesStreamController =
+      StreamController<List<DataBaseNotes>>.broadcast();
+
+  Future<void> _cacheNotes() async {
+    final allNotes = await getAllNotes(); //getAllNotes returns an iterable
+    _notes = allNotes.toList();
+    _notesStreamController
+        .add(_notes); // adding the list of notes to the stream
+  }
+
   //add function to delete all notes
+
+  Future<int> deleteAllNotes() async {
+    final db = _getDataBaseOrThrow();
+    final numOfDel = await db.delete(noteTable);
+
+    //deleting from cache
+    _notes = [];
+    _notesStreamController.add(_notes);
+
+    return numOfDel;
+  }
 
   Future<DataBaseNotes> updateNotes({
     required DataBaseNotes note,
     required String text,
   }) async {
     final db = _getDataBaseOrThrow();
-    await getNote(id: note.id);
+    await getNote(id: note.id); //making sure note exists
     final updatesCount = await db.update(noteTable, {
       textCol: text,
       isSyncedCol: 0,
@@ -24,7 +48,11 @@ class NoteService {
     if (updatesCount == 0) {
       throw CouldNotUpdateNote();
     } else {
-      return await getNote(id: note.id);
+      final updatedNote = await getNote(id: note.id);
+      _notes.removeWhere((note) => note.id == updatedNote.id);
+      _notes.add(updatedNote);
+      _notesStreamController.add(_notes);
+      return updatedNote;
     }
   }
 
@@ -45,7 +73,17 @@ class NoteService {
     if (notes.isEmpty) {
       throw CouldNotFindNotes();
     } else {
-      return DataBaseNotes.fromRow(notes.first);
+      //here it is possible that the note thats required is prolly in the local cache but its just not updated
+      //now is a good oppertunity to update the local cache.
+      final note = DataBaseNotes.fromRow(notes.first);
+
+      //updating
+      _notes.removeWhere((note) => note.id == id);
+      _notes.add(note);
+      _notesStreamController.add(_notes);
+      //done.
+
+      return note;
     }
   }
 
@@ -56,8 +94,12 @@ class NoteService {
       where: 'id=?',
       whereArgs: [id],
     );
-    if (deletedCount != 1) {
+    if (deletedCount == 0) {
       throw CouldNotDeleteNote();
+    } else {
+      //removing the deleted note from the cache
+      _notes.removeWhere((note) => note.id == id);
+      _notesStreamController.add(_notes);
     }
   }
 
@@ -84,6 +126,11 @@ class NoteService {
         text: text,
         isSynced: true,
       );
+
+      //reactivley adding the new notes to the database
+
+      _notes.add(note);
+      _notesStreamController.add(_notes);
 
       return note;
     }
@@ -186,6 +233,8 @@ class NoteService {
         );''';
 
       await db.execute(createNoteTable);
+      //we made sure the notes and the user data exists and now we need to cache that data
+      await _cacheNotes();
     } on MissingPlatformDirectoryException {
       throw UnableToGetDocumentDirectory();
     }
