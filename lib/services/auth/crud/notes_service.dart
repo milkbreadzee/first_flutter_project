@@ -12,6 +12,12 @@ class NoteService {
 
   List<DataBaseNotes> _notes = [];
 
+  //creating a singleton
+  static final NoteService _shared = NoteService._sharedInstance();
+  NoteService._sharedInstance(); //private constructor
+  factory NoteService() => _shared;//factory constructor
+  //done.
+
   final _notesStreamController =
       StreamController<List<DataBaseNotes>>.broadcast();
 
