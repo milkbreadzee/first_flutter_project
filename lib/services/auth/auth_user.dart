@@ -4,12 +4,19 @@ import 'package:flutter/cupertino.dart';
 //creating a class
 @immutable //this class  and all its subclasses is final
 class AuthUser {
+  final String? email; //making the string optionable
   final bool isEmailVerified;
-  const AuthUser(this.isEmailVerified);
+  const AuthUser({
+    required this.email,
+    required this.isEmailVerified,
+  });
 
   //factory constructor
-  factory AuthUser.fromFirebase(User user) => AuthUser(user.emailVerified);
-  //were taking a copy of the user from firebase, creating an object and 
+  factory AuthUser.fromFirebase(User user) => AuthUser(
+        email: user.email,
+        isEmailVerified: user.emailVerified,
+      );
+  //were taking a copy of the user from firebase, creating an object and
   //passing it to our class AuthUser.
 }
 

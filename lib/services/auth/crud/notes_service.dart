@@ -15,6 +15,9 @@ class NoteService {
   final _notesStreamController =
       StreamController<List<DataBaseNotes>>.broadcast();
 
+  //getter for getting all the notes
+  Stream<List<DataBaseNotes>> get allNotes => _notesStreamController.stream;
+
   Future<void> _cacheNotes() async {
     final allNotes = await getAllNotes(); //getAllNotes returns an iterable
     _notes = allNotes.toList();
@@ -22,9 +25,32 @@ class NoteService {
         .add(_notes); // adding the list of notes to the stream
   }
 
-  //add function to delete all notes
+  /* delete all notes
+      get allnotes
+      update notes
+      delete note
+      create note
+      get user
+      create user
+      get user or throw
+      open
+      close
+  */
+
+  Future<DataBaseUser> createOrGetUser({required String email}) async {
+    try {
+      final user = await getUser(email: email);
+      return user;
+    } on CouldNotFindUser {
+      final createdUser = await createUser(email: email);
+      return createdUser;
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   Future<int> deleteAllNotes() async {
+    await _ensureDbIsOpen();
     final db = _getDataBaseOrThrow();
     final numOfDel = await db.delete(noteTable);
 
@@ -39,6 +65,7 @@ class NoteService {
     required DataBaseNotes note,
     required String text,
   }) async {
+    await _ensureDbIsOpen();
     final db = _getDataBaseOrThrow();
     await getNote(id: note.id); //making sure note exists
     final updatesCount = await db.update(noteTable, {
@@ -57,12 +84,14 @@ class NoteService {
   }
 
   Future<Iterable<DataBaseNotes>> getAllNotes() async {
+    await _ensureDbIsOpen();
     final db = _getDataBaseOrThrow();
     final notes = await db.query(noteTable);
     return notes.map((noteRow) => DataBaseNotes.fromRow(noteRow));
   }
 
   Future<DataBaseNotes> getNote({required int id}) async {
+    await _ensureDbIsOpen();
     final db = _getDataBaseOrThrow();
     final notes = await db.query(
       noteTable,
@@ -88,6 +117,7 @@ class NoteService {
   }
 
   Future<void> deleteNote({required int id}) async {
+    await _ensureDbIsOpen();
     final db = _getDataBaseOrThrow();
     final deletedCount = await db.delete(
       noteTable,
@@ -104,6 +134,7 @@ class NoteService {
   }
 
   Future<DataBaseNotes> createNote({required DataBaseUser owner}) async {
+    await _ensureDbIsOpen();
     final db = _getDataBaseOrThrow();
 
     final dbUser = await getUser(email: owner.email);
@@ -137,6 +168,7 @@ class NoteService {
   }
 
   Future<DataBaseUser> getUser({required String email}) async {
+    await _ensureDbIsOpen();
     final db = _getDataBaseOrThrow();
     final results = await db.query(
       userTable,
@@ -153,6 +185,7 @@ class NoteService {
   }
 
   Future<DataBaseUser> createUser({required String email}) async {
+    await _ensureDbIsOpen();
     final db = _getDataBaseOrThrow();
     final results = await db.query(
       userTable,
@@ -174,6 +207,7 @@ class NoteService {
   }
 
   Future<void> deleteUser({required String email}) async {
+    await _ensureDbIsOpen();
     final db = _getDataBaseOrThrow();
     final deletedCount = await db.delete(
       userTable,
@@ -204,6 +238,19 @@ class NoteService {
     }
   }
 
+  Future<void> _ensureDbIsOpen() async {
+    //private function
+    try {
+      //our open function throws and exception if db is already open
+      //we need to make sure that every time notes view is reloaded, a new db isnt created
+      //and the exception wont get thrown everytime(kinda like a cycle)
+      //to do that we
+      await open();
+    } on DataBasealreadyOpenException {
+      //empty
+    }
+  }
+
   Future<void> open() async {
     if (_db != null) {
       throw DataBasealreadyOpenException();
@@ -211,7 +258,8 @@ class NoteService {
     try {
       final docsPath = await getApplicationDocumentsDirectory();
       final dbPath = join(docsPath.path, dbName);
-      final db = await openDatabase(dbPath);
+      final db =
+          await openDatabase(dbPath); //openDatabase is a sqflite API method
       _db = db;
 
       const createUserTable = ''' CREATE TABLE IF NOT EXISTS "user" (
