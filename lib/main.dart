@@ -6,7 +6,8 @@ import 'package:strawberrydaydreams/services/auth/auth_service.dart';
 //import 'package:strawberrydaydreams/views/home_view.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:strawberrydaydreams/views/login_view.dart';
-import 'package:strawberrydaydreams/views/notes_view.dart';
+import 'package:strawberrydaydreams/views/notes/new_note_view.dart';
+import 'package:strawberrydaydreams/views/notes/notes_view.dart';
 import 'package:strawberrydaydreams/views/register_view.dart';
 import 'package:strawberrydaydreams/views/verifyemail_view.dart';
 
@@ -27,6 +28,7 @@ void main() {
         registerRoute: (context) => const RegisterView(),
         notesRoute: (context) => const NotesView(),
         verifyemailRoute: (context) => const VerifyEmailView(),
+        newNoteRoute:(context) => const NewNoteView(),
       },
     ),
   );

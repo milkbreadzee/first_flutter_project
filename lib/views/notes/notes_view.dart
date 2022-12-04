@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:strawberrydaydreams/constants/routes.dart';
 import 'package:strawberrydaydreams/services/auth/auth_service.dart';
 
-import '../enums/menu_action.dart';
-import '../services/auth/crud/notes_service.dart';
+import '../../enums/menu_action.dart';
+import '../../services/auth/crud/notes_service.dart';
 
 class NotesView extends StatefulWidget {
   const NotesView({Key? key}) : super(key: key);
@@ -37,9 +37,14 @@ class _NotesViewState extends State<NotesView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Thoughts'),
+          title: const Text('♡ Notes ♡'),
           //logout option in menu
           actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(newNoteRoute);
+                },
+                icon: const Icon(Icons.add)),
             PopupMenuButton<MenuAction>(
               onSelected: (value) async {
                 switch (value) {
@@ -72,8 +77,10 @@ class _NotesViewState extends State<NotesView> {
                   stream: _noteService.allNotes,
                   builder: (context, snapshot) {
                     switch (snapshot.connectionState) {
-                      case ConnectionState.waiting:
+                      case ConnectionState.active:
                         return const Text('Waiting..');
+                      case ConnectionState.waiting:
+                        
                       default:
                         return const CircularProgressIndicator();
                     }
