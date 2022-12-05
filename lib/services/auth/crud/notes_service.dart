@@ -14,12 +14,25 @@ class NoteService {
 
   //creating a singleton
   static final NoteService _shared = NoteService._sharedInstance();
-  NoteService._sharedInstance(); //private constructor
+  NoteService._sharedInstance(){
+    //initializing the late final _notesStreamController
+    _notesStreamController = StreamController<List<DataBaseNotes>>.broadcast(
+      onListen: () {
+        _notesStreamController.sink.add(_notes); //making sure if theres a new listener, were also giving them the previous data too.
+        //because streamcontoller doesnt do that by itself
+      },
+    );
+  } //private constructor
   factory NoteService() => _shared;//factory constructor
   //done.
 
-  final _notesStreamController =
-      StreamController<List<DataBaseNotes>>.broadcast();
+  //final _notesStreamController =
+  //    StreamController<List<DataBaseNotes>>.broadcast(); //turning this into a late final, which means we need to make sure its initialized
+  //when our instance is creates
+
+  late final StreamController<List<DataBaseNotes>> _notesStreamController; //declaring it as a late final
+     
+
 
   //getter for getting all the notes
   Stream<List<DataBaseNotes>> get allNotes => _notesStreamController.stream;
@@ -31,6 +44,7 @@ class NoteService {
         .add(_notes); // adding the list of notes to the stream
   }
 
+  // ------ ALL THE FUNCTIONALITIES ----- //
   /* delete all notes
       get allnotes
       update notes

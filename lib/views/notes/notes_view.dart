@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:strawberrydaydreams/constants/routes.dart';
 import 'package:strawberrydaydreams/services/auth/auth_service.dart';
@@ -22,15 +23,9 @@ class _NotesViewState extends State<NotesView> {
   @override
   void initState() {
     _noteService = NoteService();
-    //_noteService.open(); we created _ensureDbISOpen to make sure that the db is open before any of the functions in it are called,
+    //_noteService.open(); we created _ensureDbISOpen in noteservice to make sure that the db is open before any of the functions in it are called,
     //which means we dont need to manually call the open functin now and everything realted to the db can we abstracted away.
     super.initState(); //???
-  }
-
-  @override
-  void dispose() {
-    _noteService.close();
-    super.dispose(); //????
   }
 
   @override
@@ -74,13 +69,25 @@ class _NotesViewState extends State<NotesView> {
             switch (snapshot.connectionState) {
               case ConnectionState.done:
                 return StreamBuilder(
-                  stream: _noteService.allNotes,
+                  stream: _noteService
+                      .allNotes, //stream is listening to all notes so the snapshot we get is all notes
                   builder: (context, snapshot) {
                     switch (snapshot.connectionState) {
                       case ConnectionState.active:
-                        return const Text('Waiting..');
+                        if (snapshot.hasData) {
+                          print("hello");
+                          final allNotes = snapshot.data as List<DataBaseNotes>;
+                          return ListView.builder(
+                            itemCount: allNotes.length,
+                            itemBuilder: (context, index) {
+                              return const Text("item");
+                            },
+                          );
+                        } else {
+                          return const CircularProgressIndicator();
+                        }
                       case ConnectionState.waiting:
-                        
+                        return const Text("hihi");
                       default:
                         return const CircularProgressIndicator();
                     }
