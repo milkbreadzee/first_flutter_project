@@ -41,9 +41,16 @@ class _RegisterViewState extends State<RegisterView> {
     // return Container(); //this is what changes the bg color. color: Colors.red, inside the ()
     return Scaffold(
       //Scaffold is the ownder of that white body below the blue bar.
+
+      //!---------------!
+
+      /*commenting out the app bar
+
       appBar: AppBar(
         title: const Text("Sign up"),
-      ), //App Bar
+      ), //App Bar*/
+
+      //!---------------!
 
       //to get this, select TextButtom then ctrl + ., select wrap with Center
       body: FutureBuilder(
@@ -55,71 +62,166 @@ class _RegisterViewState extends State<RegisterView> {
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
-              return Column(
-                children: [
-                  TextField(
-                    controller: _email,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration:
-                        const InputDecoration(hintText: "enter your email"),
-                  ),
-                  TextField(
-                    controller: _password,
-                    //these 3 are imp for password
-                    obscureText: true,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    //..................
-                    decoration:
-                        const InputDecoration(hintText: "enter your password"),
-                  ),
-                  TextButton(
-                    onPressed: () async {
-                      final email = _email.text;
-                      final password = _password.text;
-                      try {
-                        await FirebaseAuth.instance
-                            .createUserWithEmailAndPassword(
-                          email: email,
-                          password: password,
-                        );
-                        final user = FirebaseAuth.instance.currentUser;
-                        await user?.sendEmailVerification;
-                        Navigator.of(context).pushNamed(verifyemailRoute);
-                      } on EmailAlreadyInUseAuthException {
-                        await showErrDialog(
-                          context,
-                          'Email Already In Use',
-                        );
-                      } on WeakPasswordAuthException{
-                        await showErrDialog(
-                          context,
-                         'Weak Password',
-                         );
-                      }on InvalidEmailAuthException {
-                        await showErrDialog(
-                          context, 
-                          'Invalid Email',
-                          );
-                      } on GenericAuthException {
-                        await showErrDialog(
-                          context, 
-                          'Error',
-                          );
-                      }
-                    },
-                    child: const Text('Register'),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            loginRoute, (route) => false);
-                      },
-                      child: const Text('already registered? login here <3')),
-                ],
-              );
+              return SafeArea(
+                  child: Center(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        //fontFamily: ,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          border: Border.all(color: Colors.black),
+                        ),
+                        child: TextField(
+                          controller: _email,
+                          enableSuggestions: false,
+                          autocorrect: false,
+                          keyboardType: TextInputType.name,
+                          decoration: const InputDecoration(
+                              hintText: "enter your name",
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(15.0)),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          border: Border.all(color: Colors.black),
+                        ),
+                        child: TextField(
+                          controller: _email,
+                          enableSuggestions: false,
+                          autocorrect: false,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: const InputDecoration(
+                              hintText: "enter your email",
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(15.0)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          border: Border.all(color: Colors.black),
+                        ),
+                        child: TextField(
+                          controller: _password,
+                          //these 3 are imp for password
+                          obscureText: true,
+                          enableSuggestions: false,
+                          autocorrect: false,
+                          //..................
+                          decoration: const InputDecoration(
+                            hintText: "enter your password",
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.all(15.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0,),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(
+                            const EdgeInsets.symmetric(vertical: 5, horizontal: 50)),
+                            foregroundColor: MaterialStateProperty.all(Colors.white), //h =135 
+                          ),
+                          onPressed: () async {
+                            final email = _email.text;
+                            final password = _password.text;
+                            try {
+                              await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                email: email,
+                                password: password,
+                              );
+                              final user = FirebaseAuth.instance.currentUser;
+                              await user?.sendEmailVerification;
+                              Navigator.of(context).pushNamed(verifyemailRoute);
+                            } on EmailAlreadyInUseAuthException {
+                              await showErrDialog(
+                                context,
+                                'Email Already In Use',
+                              );
+                            } on WeakPasswordAuthException {
+                              await showErrDialog(
+                                context,
+                                'Weak Password',
+                              );
+                            } on InvalidEmailAuthException {
+                              await showErrDialog(
+                                context,
+                                'Invalid Email',
+                              );
+                            } on GenericAuthException {
+                              await showErrDialog(
+                                context,
+                                'Error',
+                              );
+                            }
+                          },
+                          child: const Text('Register'),
+                        ),
+                      ),
+                    ),
+
+
+                    TextButton(
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              loginRoute, (route) => false);
+                        },
+                        child: const Text('already registered? login here <3')),
+                  ],
+                ),
+              ));
             default:
               return const Text("Loading...");
           }

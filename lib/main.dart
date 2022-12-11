@@ -10,11 +10,11 @@ import 'package:strawberrydaydreams/views/notes/new_note_view.dart';
 import 'package:strawberrydaydreams/views/notes/notes_view.dart';
 import 'package:strawberrydaydreams/views/register_view.dart';
 import 'package:strawberrydaydreams/views/verifyemail_view.dart';
-
+import  'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 //import 'firebase_options.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //!!!read documentation about this
   runApp(
     MaterialApp(
