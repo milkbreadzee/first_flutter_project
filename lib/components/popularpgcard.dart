@@ -23,40 +23,55 @@ class PopularPgCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-              child: AspectRatio(
-            aspectRatio: 1 / 1,
-            child: Image.asset("assets/images/Hostel1.png"),
-          )),
+             height: 176,
+             width: 126,
+             decoration: const BoxDecoration(
+              color: Colors.white,
+             
+              image:  DecorationImage(
+                fit: BoxFit.contain,
+                image: AssetImage("assets/images/Hostel2.png"),),
+             ),
+            
+          ),
+          
           GestureDetector(
             onTap: press,
             child: Container(
-              width: 120,
+              width: 126,
               padding: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
+                
               ),
               child: Row(
                 children: <Widget>[
-                  RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                        text: "$hostel\n".toUpperCase(),
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 0,
+                      left: 12,
+                      bottom: 5,
+                    ),
+                    child: RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                          text: "$hostel\n".toUpperCase(),
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: "$place",
-                        style: const TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.grey,
+                        TextSpan(
+                          text: "$place",
+                          style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey,
+                          ),
                         ),
-                      ),
-                    ]),
+                      ]),
+                    ),
                   ),
                 ],
               ),

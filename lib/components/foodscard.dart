@@ -54,7 +54,7 @@ class FoodCardBig extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     image: const DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage("assets/images/foodimg.png"),
+                      image: AssetImage("assets/images/burger1.png"),
                     ),
                   ),
                 ),

@@ -82,26 +82,26 @@ class _RegisterViewState extends State<RegisterView> {
                       height: 25,
                     ),
 
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                          border: Border.all(color: Colors.black),
-                        ),
-                        child: TextField(
-                          controller: _email,
-                          enableSuggestions: false,
-                          autocorrect: false,
-                          keyboardType: TextInputType.name,
-                          decoration: const InputDecoration(
-                              hintText: "enter your name",
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.all(15.0)),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    //   child: Container(
+                    //     decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.circular(10),
+                    //       color: Colors.white,
+                    //       border: Border.all(color: Colors.black),
+                    //     ),
+                    //     child: TextField(
+                    //       controller: _email,
+                    //       enableSuggestions: false,
+                    //       autocorrect: false,
+                    //       keyboardType: TextInputType.name,
+                    //       decoration: const InputDecoration(
+                    //           hintText: "enter your name",
+                    //           border: InputBorder.none,
+                    //           contentPadding: EdgeInsets.all(15.0)),
+                    //     ),
+                    //   ),
+                    // ),
 
                     const SizedBox(
                       height: 10,

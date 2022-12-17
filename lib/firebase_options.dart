@@ -44,40 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCLWSU9lpFeLcSy0wsSQ9dg4kKX6nbXhzs',
-    appId: '1:1000926527239:web:0dfe9a3f262d9764c30fa2',
-    messagingSenderId: '1000926527239',
-    projectId: 'mynotes69',
-    authDomain: 'mynotes69.firebaseapp.com',
-    storageBucket: 'mynotes69.appspot.com',
-    measurementId: 'G-8NFY04DH10',
+    apiKey: 'AIzaSyCitTFmoWJrfFFnBLtPYri46nYPUcSBGr4',
+    appId: '1:990350557183:web:a677613c68c6302b5771ca',
+    messagingSenderId: '990350557183',
+    projectId: 'pocketpg-e8d80',
+    authDomain: 'pocketpg-e8d80.firebaseapp.com',
+    storageBucket: 'pocketpg-e8d80.appspot.com',
+    measurementId: 'G-DE1EMEFWM9',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCRn0LQNP-nsDN5f_gSNcBAsHYfXDmuqDc',
-    appId: '1:1000926527239:android:95739fcf3608528dc30fa2',
-    messagingSenderId: '1000926527239',
-    projectId: 'mynotes69',
-    storageBucket: 'mynotes69.appspot.com',
+    apiKey: 'AIzaSyBuGcmGq8DQdaOX-R9du5sPHdHfZMIBHmk',
+    appId: '1:990350557183:android:d6341079402dce385771ca',
+    messagingSenderId: '990350557183',
+    projectId: 'pocketpg-e8d80',
+    storageBucket: 'pocketpg-e8d80.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAHIRHW8Gn-I-lh4CKGVmil29GEh6Qb13E',
-    appId: '1:1000926527239:ios:d33d740a9ed415c1c30fa2',
-    messagingSenderId: '1000926527239',
-    projectId: 'mynotes69',
-    storageBucket: 'mynotes69.appspot.com',
-    iosClientId: '1000926527239-5qsplc0s2908m102evtorm9vt1vc28mu.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAWfgvs_MNoQV87y30ykUuE3W5JMlAiOG8',
+    appId: '1:990350557183:ios:772b810373c8e9a05771ca',
+    messagingSenderId: '990350557183',
+    projectId: 'pocketpg-e8d80',
+    storageBucket: 'pocketpg-e8d80.appspot.com',
+    iosClientId: '990350557183-rhgho4sbqq6mf72oojff37i6ne29qvfk.apps.googleusercontent.com',
     iosBundleId: 'in.berrydays.strawberrydaydreams',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAHIRHW8Gn-I-lh4CKGVmil29GEh6Qb13E',
-    appId: '1:1000926527239:ios:d33d740a9ed415c1c30fa2',
-    messagingSenderId: '1000926527239',
-    projectId: 'mynotes69',
-    storageBucket: 'mynotes69.appspot.com',
-    iosClientId: '1000926527239-5qsplc0s2908m102evtorm9vt1vc28mu.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAWfgvs_MNoQV87y30ykUuE3W5JMlAiOG8',
+    appId: '1:990350557183:ios:772b810373c8e9a05771ca',
+    messagingSenderId: '990350557183',
+    projectId: 'pocketpg-e8d80',
+    storageBucket: 'pocketpg-e8d80.appspot.com',
+    iosClientId: '990350557183-rhgho4sbqq6mf72oojff37i6ne29qvfk.apps.googleusercontent.com',
     iosBundleId: 'in.berrydays.strawberrydaydreams',
   );
 }

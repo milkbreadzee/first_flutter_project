@@ -54,7 +54,7 @@ class HostelCardBig extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     image: const DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage("assets/images/Hostel1.png"),
+                      image: AssetImage("assets/images/Hostel2.png"),
                     ),
                   ),
                 ),

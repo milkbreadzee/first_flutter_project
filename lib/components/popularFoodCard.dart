@@ -53,8 +53,8 @@ class PopularFoodCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     image: const DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage("assets/images/foodimg.png"),
+                      fit: BoxFit.contain,
+                      image: AssetImage("assets/images/burger1.png"),
                     ),
                   ),
                 ),
