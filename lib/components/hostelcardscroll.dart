@@ -24,7 +24,7 @@ class HostelCardScroll extends StatelessWidget {
             imgSrc: "assets/images/Hostel2.png",
           ),
           const SizedBox(
-            height: 20,
+            height: 25,
           ),
           HostelCardBig(
             hostelname: "YMCA",

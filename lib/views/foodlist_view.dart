@@ -10,112 +10,99 @@ class FoodPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return DefaultTabController(
-      length: 5,
-      child: Scaffold(
-       
-         bottomNavigationBar: BottomNavBarComponent(),
-        body: SingleChildScrollView(
-          child: Column(
-            
-            children:  <Widget>[
-             const Padding(
-                padding: EdgeInsets.only(
-                  top:35,
-                  bottom: 10,
-                  left: 25,
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Best Food",
-                    
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.only(
+              top: 35,
+              bottom: 10,
+              left: 25,
+            ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Best Food",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-        
-              //  const SizedBox(height: 10,),
-        
-               const Padding(
-                padding: EdgeInsets.only(
-                  
-                  bottom: 10,
-                  left: 25,
+            ),
+          ),
+
+          //  const SizedBox(height: 10,),
+
+          const Padding(
+            padding: EdgeInsets.only(
+              bottom: 10,
+              left: 25,
+            ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Area",
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
                 ),
-                 child: Align(
-                  alignment: Alignment.centerLeft,
-                   child:  Text(
-                      "Area",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                 ),
-               ),
-        
-              //add buttons
-        
-              Row(
-                children: <Widget>[
-                  const SizedBox(width: 12,),
-                  ElevatedButton(
-                    child: Text("MEC"),
-                    onPressed: (() {
-                      
-                    }),
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      elevation: 2,
-                      backgroundColor: Colors.white,
-                      shape: StadiumBorder(), 
-                    ),
-                    
-                  ),
-                  const SizedBox(width: 20,),
-                   ElevatedButton(
-                child: Text("TKM"),
-                onPressed: (() {
-                  
-                }),
+              ),
+            ),
+          ),
+
+          //add buttons
+
+          Row(
+            children: <Widget>[
+              const SizedBox(
+                width: 12,
+              ),
+              ElevatedButton(
+                child: Text("MEC"),
+                onPressed: (() {}),
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.black,
                   elevation: 2,
                   backgroundColor: Colors.white,
-                  shape: StadiumBorder(), 
+                  shape: StadiumBorder(),
                 ),
-                
               ),
-              const SizedBox(width: 20,),
+              const SizedBox(
+                width: 20,
+              ),
+              ElevatedButton(
+                child: Text("TKM"),
+                onPressed: (() {}),
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.black,
+                  elevation: 2,
+                  backgroundColor: Colors.white,
+                  shape: StadiumBorder(),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
               ElevatedButton(
                 child: Text("CET"),
-                onPressed: (() {
-                  
-                }),
+                onPressed: (() {}),
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.black,
                   elevation: 2,
                   backgroundColor: Colors.white,
-                  shape: StadiumBorder(), 
+                  shape: StadiumBorder(),
                 ),
-                
               ),
-                ],
-              ),
-             
-             const SizedBox(
-              height: 12,
-             ),
-             FoodCardScroll(),
             ],
           ),
-        ),
+
+          const SizedBox(
+            height: 12,
+          ),
+          FoodCardScroll(),
+        ],
       ),
     );
   }

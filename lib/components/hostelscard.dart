@@ -4,7 +4,8 @@ class HostelCardBig extends StatelessWidget {
   const HostelCardBig({
     Key? key,
     required this.hostelname,
-    required this.press, required this.imgSrc,
+    required this.press,
+    required this.imgSrc,
   }) : super(key: key);
 
   final String hostelname;
@@ -15,96 +16,100 @@ class HostelCardBig extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: 176,
-      width: 344,
+      width: size.width*0.95,
       child: GestureDetector(
         onTap: press,
         child: Stack(
+          // alignment: Alignment.topCenter,
           children: <Widget>[
-            Positioned(
-              child: Material(
-                child: Container(
-                  // width: size * 0.9,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: Colors.grey.withOpacity(0.3),
-                    //     offset: Offset(0, 6),
-                    //     blurRadius: 15,
-                    //     spreadRadius: 2,
-                    //   ),
-                    // ],
+            Container(
+              height: 400,
+
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(32)),
+                color: Colors.transparent,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage(
+                    imgSrc,
+                  ),
+                ),
+              ),
+              // height: 325.0,
+            ),
+            Container(
+              height: 400.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(32)),
+                  color: Colors.white,
+                  gradient: LinearGradient(
+                      begin: FractionalOffset.topCenter,
+                      end: FractionalOffset.bottomCenter,
+                      colors: [
+                        Colors.grey.withOpacity(0.0),
+                        Colors.black,
+                      ],
+                      stops: [
+                        0.0,
+                        1.0
+                      ])),
+            ),
+
+            
+            Transform.translate(
+              offset: Offset(25, 250),
+              child: Text(
+                "$hostelname",
+                style: TextStyle(
+                  fontSize: 42,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+
+            // const SizedBox(
+            //   height: 10,
+            // ),
+            Transform.translate(
+              offset: Offset(30, 300),
+              child: const Text(
+                "₹5250",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+
+           Transform.translate(
+             offset: Offset(25,335 ),
+              child: SizedBox(
+                height: 30,
+                width: size.width * .30,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    shape: StadiumBorder(),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    "Read More",
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
             ),
 
-            Positioned(
-              top: 0,
-              left: 4,
-              child: Card(
-                elevation: 10,
-                shadowColor: Colors.grey.withOpacity(0.5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Container(
-                  height: 161,
-                  width: 145,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    image:  DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage(imgSrc),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            Positioned(
-              top: 10,
-              left: 165,
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "$hostelname",
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      "5500 per month",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      "Near MEC\nNear MEC Lorem Ipsum is\n simply dummy text of the printing\nand typesetting industry.",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // const SizedBox(
+            //   height: 25,
+            // ),
 
             //new widget here
           ],

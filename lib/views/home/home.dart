@@ -50,9 +50,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-       bottomNavigationBar: BottomNavBarComponent(),
-      body: SingleChildScrollView(
+    return  SingleChildScrollView(
         child:
         
          Column(
@@ -108,8 +106,8 @@ class Home extends StatelessWidget {
             // ),
           ],
         ),
-      ),
-    );
+      );
+    
   }
 }
 

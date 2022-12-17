@@ -11,12 +11,7 @@ class LaundryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return DefaultTabController(
-      length: 5,
-      child: Scaffold(
-        
-         bottomNavigationBar: BottomNavBarComponent(),
-        body: SingleChildScrollView(
+    return  SingleChildScrollView(
           child: Column(
             
             children:  <Widget>[
@@ -116,8 +111,7 @@ class LaundryPage extends StatelessWidget {
              LaundryCardScroll(),
             ],
           ),
-        ),
-      ),
-    );
+        );
+      
   }
 }

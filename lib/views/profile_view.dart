@@ -10,10 +10,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      backgroundColor: Color(0xFFF4F5F9),
-      bottomNavigationBar: BottomNavBarComponent(),
-      body: Column(
+    return  Column(
         children: <Widget>[
           //pfp, username, chat and mail
           Column(
@@ -234,7 +231,6 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
+      );
   }
 }
