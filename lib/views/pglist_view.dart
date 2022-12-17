@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:strawberrydaydreams/components/foodcardscroll.dart';
+import 'package:strawberrydaydreams/components/hostelcardscroll.dart';
 
 import '../components/bottomnavbar.dart';
 
-class FoodPage extends StatelessWidget {
+
+
+class PgPage extends StatelessWidget {
   //final VoidCallback press;
-  const FoodPage({super.key});
+  const PgPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xFFF4F5F9),
-      bottomNavigationBar: BottomNavBarComponent(),
+     
+       bottomNavigationBar: BottomNavBarComponent(),
       body: SingleChildScrollView(
         child: Column(
           
@@ -26,7 +28,7 @@ class FoodPage extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Best Food",
+                  "Best Hostels",
                   
                   style: TextStyle(
                     color: Colors.black,
@@ -106,11 +108,11 @@ class FoodPage extends StatelessWidget {
             ),
               ],
             ),
-           
-           const SizedBox(
+            const SizedBox(
             height: 12,
            ),
-           FoodCardScroll(),
+           
+           HostelCardScroll(),
           ],
         ),
       ),

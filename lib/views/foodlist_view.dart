@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:strawberrydaydreams/components/foodcardscroll.dart';
 
 import '../components/bottomnavbar.dart';
-import '../components/laundrycardscroll.dart';
 
-class LaundryPage extends StatelessWidget {
+class FoodPage extends StatelessWidget {
   //final VoidCallback press;
-  const LaundryPage({super.key});
+  const FoodPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,7 @@ class LaundryPage extends StatelessWidget {
     return DefaultTabController(
       length: 5,
       child: Scaffold(
-        
+       
          bottomNavigationBar: BottomNavBarComponent(),
         body: SingleChildScrollView(
           child: Column(
@@ -29,7 +28,7 @@ class LaundryPage extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Best Laundry",
+                    "Best Food",
                     
                     style: TextStyle(
                       color: Colors.black,
@@ -113,7 +112,7 @@ class LaundryPage extends StatelessWidget {
              const SizedBox(
               height: 12,
              ),
-             LaundryCardScroll(),
+             FoodCardScroll(),
             ],
           ),
         ),

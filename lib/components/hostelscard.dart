@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 class HostelCardBig extends StatelessWidget {
   const HostelCardBig({
-    Key? key, required this.hostelname, required this.press,
+    Key? key,
+    required this.hostelname,
+    required this.press, required this.imgSrc,
   }) : super(key: key);
 
   final String hostelname;
+  final String imgSrc;
   final VoidCallback press;
 
   @override
@@ -37,7 +40,7 @@ class HostelCardBig extends StatelessWidget {
                 ),
               ),
             ),
-      
+
             Positioned(
               top: 0,
               left: 4,
@@ -52,15 +55,15 @@ class HostelCardBig extends StatelessWidget {
                   width: 145,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
-                    image: const DecorationImage(
+                    image:  DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage("assets/images/Hostel2.png"),
+                      image: AssetImage(imgSrc),
                     ),
                   ),
                 ),
               ),
             ),
-      
+
             Positioned(
               top: 10,
               left: 165,
@@ -79,7 +82,7 @@ class HostelCardBig extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       "5500 per month",
                       style: TextStyle(
                         fontSize: 16,
@@ -90,7 +93,7 @@ class HostelCardBig extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       "Near MEC\nNear MEC Lorem Ipsum is\n simply dummy text of the printing\nand typesetting industry.",
                       style: TextStyle(
                         fontSize: 15,
@@ -102,7 +105,7 @@ class HostelCardBig extends StatelessWidget {
                 ),
               ),
             ),
-      
+
             //new widget here
           ],
         ),

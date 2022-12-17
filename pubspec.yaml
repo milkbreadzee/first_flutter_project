@@ -44,6 +44,7 @@ dependencies:
   path_provider: ^2.0.11
   path: ^1.8.2
   flutter_svg: ^0.20.0-nullsafety.3
+  expandable_text: 2.3.0
 
 
 
@@ -74,6 +75,8 @@ flutter:
     - assets/images/burger1.png
     - assets/images/Hostel1.png
     - assets/images/Hostel2.png
+    - assets/images/shirt.png
+    - assets/images/user.png
     - assets/images/pfp1.png
     - assets/images/laundry.png
     - assets/images/laundry1.png

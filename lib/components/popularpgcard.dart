@@ -25,11 +25,12 @@ class PopularPgCard extends StatelessWidget {
           Container(
              height: 176,
              width: 126,
-             decoration: const BoxDecoration(
+             decoration: BoxDecoration(
               color: Colors.white,
-             
-              image:  DecorationImage(
+              
+              image:  const DecorationImage(
                 fit: BoxFit.contain,
+                
                 image: AssetImage("assets/images/Hostel2.png"),),
              ),
             

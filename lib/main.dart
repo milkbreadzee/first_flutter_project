@@ -27,7 +27,7 @@ void main() async {
       routes: {
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
-        homeRoute:(context) => const Home(),
+        homeRoute:(context) =>  Home(),
         verifyemailRoute: (context) => const VerifyEmailView(),
         
       },
@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
             final user = AuthService.firebase().currentUser;
             if (user != null) {
               if (user.isEmailVerified) {
-                return const Home();
+                return  Home();
               } else {
                 return const Center(child: VerifyEmailView());
               }

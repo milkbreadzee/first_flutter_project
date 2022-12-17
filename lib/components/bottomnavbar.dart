@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:strawberrydaydreams/main.dart';
-import 'package:strawberrydaydreams/views/food_view.dart';
+import 'package:strawberrydaydreams/views/foodlist_view.dart';
 import 'package:strawberrydaydreams/views/laundry_view.dart';
 import 'package:strawberrydaydreams/views/profile_view.dart';
-import '../views/pg_view.dart';
+import '../views/pglist_view.dart';
 import 'navbar.dart';
 
 class BottomNavBarComponent extends StatelessWidget {
   const BottomNavBarComponent({
     Key? key,
   }) : super(key: key);
+
+  
 
   @override
   Widget build(BuildContext context) {

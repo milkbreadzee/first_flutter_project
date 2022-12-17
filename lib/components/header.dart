@@ -76,7 +76,11 @@ class Header extends StatelessWidget {
                 child: const TextField(
                   decoration: InputDecoration(
                     hintText: "Search",
-                    contentPadding: EdgeInsets.all(20),
+                    prefixIcon: Icon(Icons.search_outlined),
+                    contentPadding: EdgeInsets.only(
+                      bottom: 20,
+                      top:20,
+                    ),
                     hintStyle: TextStyle(
                       color: Colors.grey,
                     ),
