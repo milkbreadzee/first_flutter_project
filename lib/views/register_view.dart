@@ -40,6 +40,7 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     // return Container(); //this is what changes the bg color. color: Colors.red, inside the ()
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       //Scaffold is the ownder of that white body below the blue bar.
 
       //!---------------!
@@ -67,7 +68,7 @@ class _RegisterViewState extends State<RegisterView> {
                 child: Column(
                   children: [
                     const SizedBox(
-                      height: 25,
+                      height: 200,
                     ),
                     const Text(
                       'Sign Up',
@@ -218,7 +219,96 @@ class _RegisterViewState extends State<RegisterView> {
                           Navigator.of(context).pushNamedAndRemoveUntil(
                               loginRoute, (route) => false);
                         },
-                        child: const Text('already registered? login here <3')),
+                        child: const Text('Have an account? Login')),
+
+                    Column(children: <Widget>[
+            
+                      Row(children: <Widget>[
+                        Expanded(
+                          child: Container(
+                              margin: const EdgeInsets.only(left: 10.0, right: 20.0),
+                              child: const Divider(
+                                color: Colors.black,
+                                height: 36,
+                                
+                              )),
+                        ),
+
+                        const Text("OR"),
+
+                        Expanded(
+                          child:  Container(
+                              margin: const EdgeInsets.only(left: 20.0, right: 10.0),
+                              child:const  Divider(
+                                color: Colors.black,
+                                height: 36,
+                              )),
+                        ),
+
+                      ]),
+                    
+                    ]),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0,),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(
+                            const EdgeInsets.symmetric(vertical: 5, horizontal: 50)),
+                            foregroundColor: MaterialStateProperty.all(Colors.white), //h =135 
+                          ),
+                          onPressed: () {
+                            
+                          },
+                           child: const Text('Signup As Service Provider'),
+                          /*
+                          onPressed: () async {
+                            final email = _email.text;
+                            final password = _password.text;
+                            try {
+                              await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                email: email,
+                                password: password,
+                              );
+                              final user = FirebaseAuth.instance.currentUser;
+                              await user?.sendEmailVerification;
+                              Navigator.of(context).pushNamed(verifyemailRoute);
+                            } on EmailAlreadyInUseAuthException {
+                              await showErrDialog(
+                                context,
+                                'Email Already In Use',
+                              );
+                            } on WeakPasswordAuthException {
+                              await showErrDialog(
+                                context,
+                                'Weak Password',
+                              );
+                            } on InvalidEmailAuthException {
+                              await showErrDialog(
+                                context,
+                                'Invalid Email',
+                              );
+                            } on GenericAuthException {
+                              await showErrDialog(
+                                context,
+                                'Error',
+                              );
+                            }
+                          },*/
+                         
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ));

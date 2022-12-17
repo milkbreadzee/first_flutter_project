@@ -46,7 +46,8 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     // return Container(); //this is what changes the bg color. color: Colors.red, inside the ()
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      resizeToAvoidBottomInset : false,
+      //backgroundColor: Colors.grey[300],
       //Scaffold is the ownder of that white body below the blue bar.
 
       //!---------------------!
@@ -56,7 +57,7 @@ class _LoginViewState extends State<LoginView> {
         title: const Text("Login"),
       ), //App Bar */
 
-       //!---------------------!
+      //!---------------------!
 
       //to get this, select TextButtom then ctrl + ., select wrap with Center
       body: FutureBuilder(
@@ -70,82 +71,148 @@ class _LoginViewState extends State<LoginView> {
                 child: Center(
                   child: Column(
                     children: [
-                      const SizedBox(height: 25,),
-                      TextField(
-                        style: const TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
+                      const SizedBox(
+                        height: 200,
+                      ),
+                      const Text(
+                        'Log In',
+                        style: TextStyle(
+                          //fontFamily: ,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
                         ),
-                        controller: _email,
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration:
-                            const InputDecoration(hintText: "enter your email"),
                       ),
-                      TextField(
-
-                        controller: _password,
-                        //these 3 are imp for password
-                        obscureText: true,
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        //..................
-                        decoration: const InputDecoration(
-                            hintText: "enter your password"),
+                      const SizedBox(
+                        height: 25,
                       ),
-                      TextButton(
-                        onPressed: () async {
-                          final email = _email.text;
-                          final password = _password.text;
-                          try {
-                            await AuthService.firebase().logIn(
-                              email: email,
-                              password: password,
-                            );
 
-                            final user = AuthService.firebase().currentUser;
-                            if (user?.isEmailVerified ?? false) {
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                notesRoute,
-                                (route) => false,
-                              );
-                            } else {
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                verifyemailRoute,
-                                (route) => false,
-                              );
-                            }
-                          } on UserNotFoundAuthException catch (e) {
-                            await showErrDialog(
-                              context,
-                              'User not found',
-                            );
-                          } on WrongPasswordAuthException {
-                            await showErrDialog(
-                              context,
-                              'Wrong Password',
-                            );
-                          } on InvalidEmailAuthException {
-                            await showErrDialog(
-                              context,
-                              'Invalid Email',
-                            );
-                          } on GenericAuthException {
-                            await showErrDialog(
-                              context,
-                              'Error',
-                            );
-                          }
-                        },
-                        child: const Text('Login'),
+                      //email
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: TextField(
+                            controller: _email,
+                            enableSuggestions: false,
+                            autocorrect: false,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: const InputDecoration(
+                              hintText: "enter your email",
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(15.0),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+                      //password
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: TextField(
+                            controller: _password,
+                            //these 3 are imp for password
+                            obscureText: true,
+                            enableSuggestions: false,
+                            autocorrect: false,
+                            //..................
+                            decoration: const InputDecoration(
+                              hintText: "enter your password",
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(15.0),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: TextButton(
+                            style: ButtonStyle(
+                              padding: MaterialStateProperty.all(
+                                  const EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 50)),
+                              foregroundColor: MaterialStateProperty.all(
+                                  Colors.white), //h =135
+                            ),
+                            onPressed: () async {
+                              final email = _email.text;
+                              final password = _password.text;
+                              try {
+                                await AuthService.firebase().logIn(
+                                  email: email,
+                                  password: password,
+                                );
+
+                                final user = AuthService.firebase().currentUser;
+                                if (user?.isEmailVerified ?? false) {
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                    notesRoute,
+                                    (route) => false,
+                                  );
+                                } else {
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                    verifyemailRoute,
+                                    (route) => false,
+                                  );
+                                }
+                              } on UserNotFoundAuthException catch (e) {
+                                await showErrDialog(
+                                  context,
+                                  'User not found',
+                                );
+                              } on WrongPasswordAuthException {
+                                await showErrDialog(
+                                  context,
+                                  'Wrong Password',
+                                );
+                              } on InvalidEmailAuthException {
+                                await showErrDialog(
+                                  context,
+                                  'Invalid Email',
+                                );
+                              } on GenericAuthException {
+                                await showErrDialog(
+                                  context,
+                                  'Error',
+                                );
+                              }
+                            },
+                            child: const Text('Login'),
+                          ),
+                        ),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pushNamedAndRemoveUntil(
                               registerRoute, (route) => false);
                         },
-                        child: const Text("register here <3"),
+                        child: const Text(
+                          "Dont have an account? Register here",
+                          style: TextStyle(color: Colors.black),
+                        ),
                       )
                     ],
                   ),

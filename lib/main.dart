@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:strawberrydaydreams/constants/routes.dart';
 import 'package:strawberrydaydreams/services/auth/auth_service.dart';
+import 'package:strawberrydaydreams/views/home/home.dart';
 //import 'package:strawberrydaydreams/views/home_view.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:strawberrydaydreams/views/login_view.dart';
-import 'package:strawberrydaydreams/views/notes/new_note_view.dart';
-import 'package:strawberrydaydreams/views/notes/notes_view.dart';
+
 import 'package:strawberrydaydreams/views/register_view.dart';
 import 'package:strawberrydaydreams/views/verifyemail_view.dart';
 import  'package:firebase_core/firebase_core.dart';
@@ -18,6 +18,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //!!!read documentation about this
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.pink,
@@ -26,9 +27,9 @@ void main() async {
       routes: {
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
-        notesRoute: (context) => const NotesView(),
+        homeRoute:(context) => const Home(),
         verifyemailRoute: (context) => const VerifyEmailView(),
-        newNoteRoute:(context) => const NewNoteView(),
+        
       },
     ),
   );
@@ -51,7 +52,7 @@ class HomePage extends StatelessWidget {
             final user = AuthService.firebase().currentUser;
             if (user != null) {
               if (user.isEmailVerified) {
-                return const NotesView();
+                return const Home();
               } else {
                 return const Center(child: VerifyEmailView());
               }
