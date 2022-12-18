@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:strawberrydaydreams/components/navbar.dart';
 
 import 'package:strawberrydaydreams/components/popularFoodScroll.dart';
 import 'package:strawberrydaydreams/components/popularFoodtext.dart';
-import 'package:strawberrydaydreams/main.dart';
-import 'package:strawberrydaydreams/views/foodlist_view.dart';
-import 'package:strawberrydaydreams/views/laundry_view.dart';
-import 'package:strawberrydaydreams/views/pglist_view.dart';
-import 'package:strawberrydaydreams/views/profile_view.dart';
 
-import '../../components/bottomnavbar.dart';
+
 import '../../components/header.dart';
 import '../../components/popularpgtext.dart';
 
 import '../../components/popularpgscroll.dart';
-import '../util/my_tabs.dart';
 
 class Home extends StatelessWidget {
   // List<Widget> myTabs = [
@@ -84,26 +77,7 @@ class Home extends StatelessWidget {
       
             PopularFoodScroll(),
       
-            // Expanded(
-            // child: TabBarView(
-            //   children: [
-            //     // donut page
-            //     HomePage(),
-      
-            //     // burger page
-            //     PgPage(),
-      
-            //     // smoothie page
-            //     FoodPage(),
-      
-            //     // pancake page
-            //     LaundryPage(),
-      
-            //     // pizza page
-            //     ProfilePage(),
-            //   ],
-            // ),
-            // ),
+            
           ],
         ),
       );

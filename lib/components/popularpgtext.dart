@@ -12,7 +12,7 @@ class PopularPGtext extends StatelessWidget {
       child: Container(
         width: 500,
         child: const Text(
-          "Popular PG",
+          "Your Daily",
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w500,
