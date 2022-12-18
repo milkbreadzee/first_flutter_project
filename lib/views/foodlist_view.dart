@@ -13,94 +13,173 @@ class FoodPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          const Padding(
-            padding: EdgeInsets.only(
-              top: 35,
-              bottom: 10,
-              left: 25,
+           Container(
+              height: size.height * .12,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                // borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    width: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        left: 25,
+                        top: 35,
+                      ),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(30)),
+                          // filled: true,
+                          // fillColor: Colors.black,
+                          hintText: "Search",
+                          prefixIcon: Icon(Icons.search_outlined),
+                          // contentPadding: EdgeInsets.only(
+                          //   bottom: 20,
+                          //   top:20,
+                          // ),
+
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                          ),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          // focusedBorder: OutlineInputBorder(
+                          //     borderRadius:
+                          //         BorderRadius.all(Radius.circular(22.0)),
+                          //     borderSide: BorderSide(color: Colors.black)),
+                          // filled: true,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 25,
+                      right: 25,
+                    ),
+                    child: SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          CircleAvatar(
+                            backgroundImage:
+                                AssetImage("assets/images/pfp1.png"),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Best Food",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                ),
+
+            //add buttons
+            const SizedBox(
+              height: 12,
+            ),
+
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: <Widget>[
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  ElevatedButton(
+                    child: Text("MEC"),
+                    onPressed: (() {}),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      elevation: 2,
+                      backgroundColor: Colors.white,
+                      shape: StadiumBorder(),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton(
+                    child: Text("TKM"),
+                    onPressed: (() {}),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      elevation: 2,
+                      backgroundColor: Colors.white,
+                      shape: StadiumBorder(),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton(
+                    child: Text("CET"),
+                    onPressed: (() {}),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      elevation: 2,
+                      backgroundColor: Colors.white,
+                      shape: StadiumBorder(),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton(
+                    child: Text("GEC"),
+                    onPressed: (() {}),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      elevation: 2,
+                      backgroundColor: Colors.white,
+                      shape: StadiumBorder(),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton(
+                    child: Text("CUSAT"),
+                    onPressed: (() {}),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      elevation: 2,
+                      backgroundColor: Colors.white,
+                      shape: StadiumBorder(),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton(
+                    child: Text("MACE"),
+                    onPressed: (() {}),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      elevation: 2,
+                      backgroundColor: Colors.white,
+                      shape: StadiumBorder(),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-
-          //  const SizedBox(height: 10,),
-
-          const Padding(
-            padding: EdgeInsets.only(
-              bottom: 10,
-              left: 25,
+            const SizedBox(
+              height: 25,
             ),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Area",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
 
-          //add buttons
+           
 
-          Row(
-            children: <Widget>[
-              const SizedBox(
-                width: 12,
-              ),
-              ElevatedButton(
-                child: Text("MEC"),
-                onPressed: (() {}),
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.black,
-                  elevation: 2,
-                  backgroundColor: Colors.white,
-                  shape: StadiumBorder(),
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              ElevatedButton(
-                child: Text("TKM"),
-                onPressed: (() {}),
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.black,
-                  elevation: 2,
-                  backgroundColor: Colors.white,
-                  shape: StadiumBorder(),
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              ElevatedButton(
-                child: Text("CET"),
-                onPressed: (() {}),
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.black,
-                  elevation: 2,
-                  backgroundColor: Colors.white,
-                  shape: StadiumBorder(),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(
-            height: 12,
-          ),
+           
           FoodCardScroll(),
         ],
       ),

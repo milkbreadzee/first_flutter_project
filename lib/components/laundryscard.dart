@@ -12,93 +12,90 @@ class LaundryCardBig extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: 176,
-      width: 344,
+      width: size.width*0.95,
       child: GestureDetector(
         onTap: press,
         child: Stack(
           children: <Widget>[
-            Positioned(
-              child: Material(
-                child: Container(
-                  // width: size * 0.9,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: Colors.grey.withOpacity(0.3),
-                    //     offset: Offset(0, 6),
-                    //     blurRadius: 15,
-                    //     spreadRadius: 2,
-                    //   ),
-                    // ],
+            Container(
+              height: 400,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(32)),
+                color: Colors.transparent,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage(
+                    "assets/images/laundry1.png",
                   ),
+                ),
+             
+              ),
+            ),
+      Container(
+              height: 400.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(32)),
+                  color: Colors.white,
+                  gradient: LinearGradient(
+                      begin: FractionalOffset.topCenter,
+                      end: FractionalOffset.bottomCenter,
+                      colors: [
+                        Colors.grey.withOpacity(0.0),
+                        Colors.black,
+                      ],
+                      stops: [
+                        0.0,
+                        1.0
+                      ])),
+            ),
+      
+             Transform.translate(
+              offset: Offset(25, 250),
+              child: Text(
+                "$laundryname",
+                style: TextStyle(
+                  fontSize: 42,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               ),
             ),
-      
-            Positioned(
-              top: 0,
-              left: 4,
-              child: Card(
-                elevation: 10,
-                shadowColor: Colors.grey.withOpacity(0.5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Container(
-                  height: 161,
-                  width: 145,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    image: const DecorationImage(
-                      fit: BoxFit.contain,
-                      image: AssetImage("assets/images/laundry1.png"),
-                    ),
-                  ),
+
+            // const SizedBox(
+            //   height: 10,
+            // ),
+            Transform.translate(
+              offset: Offset(30, 300),
+              child: const Text(
+                "₹10/item",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               ),
             ),
-      
-            Positioned(
-              top: 10,
-              left: 165,
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "$laundryname",
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
+            const SizedBox(
+              height: 25,
+            ),
+
+           Transform.translate(
+             offset: Offset(25,335 ),
+              child: SizedBox(
+                height: 30,
+                width: size.width * .30,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    shape: StadiumBorder(),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    "Read More",
+                    style: TextStyle(
+                      color: Colors.black,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "10 per item",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Near MEC\nNear MEC Lorem Ipsum is\n simply dummy text of the printing\nand typesetting industry.",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
